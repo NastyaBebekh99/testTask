@@ -13,6 +13,7 @@ import { NavigationBar } from '../pages/components/navigationBar';
 
 type Fixtures = {
   openStartPage: void;
+  actionOnFailure: void;
 
   loginActions: LoginActions;
   setupActions: SetupActions;
@@ -34,6 +35,27 @@ export const test = base.extend<Fixtures>({
     async ({ page }, use) => {
       await page.goto('/');
       await use();
+    },
+    { auto: true },
+  ],
+  actionOnFailure: [
+    async ({ page }, use, testInfo) => {
+      await use();
+
+      if (testInfo.status !== testInfo.expectedStatus) {
+        await testInfo.attach('Failure Screenshot', {
+          body: await page.screenshot(),
+          contentType: 'image/png',
+        });
+        const video = page.video();
+
+        if (video) {
+          await testInfo.attach('Failure Video', {
+            path: await video.path(),
+            contentType: 'video/webm',
+          });
+        }
+      }
     },
     { auto: true },
   ],

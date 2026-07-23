@@ -10,7 +10,9 @@ export default defineConfig({
   reporter: [['line'], ['allure-playwright']],
   use: {
     baseURL: BASE_URL,
-    trace: 'on',
+    trace: 'on-all-retries',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
   },
 
   /* Configure projects for major browsers */
