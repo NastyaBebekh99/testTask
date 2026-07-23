@@ -1,0 +1,8 @@
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/allure-report
+/allure-results
+/package-lock.json
