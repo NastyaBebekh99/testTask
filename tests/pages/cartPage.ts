@@ -4,12 +4,6 @@ import { BasePage } from './basePage.js';
 export class CartPage extends BasePage {
   protected path = CART_PATH;
 
-  // private productQuantity = this.page.locator(
-  //   '//*[@id="box-checkout-summary"]//td[@class="item"]/preceding-sibling::td',
-  // );
-  // private productPrice = this.page.locator(
-  //   '//*[@class="item" and text()="Purple Duck"]//following-sibling::*[@class="sum"]',
-  // );
   private productQuantity = (name: string) =>
     this.page.locator('.item', { hasText: name }).locator('xpath=/preceding-sibling::td');
   private productPriceByName = (name: string) =>
@@ -22,14 +16,7 @@ export class CartPage extends BasePage {
   private customerDetailsInputs = this.page.locator('.billing-address input:not([type="hidden"])');
 
   public async getProductKeys(): Promise<string[]> {
-    //пересмотреть
     return this.productKeys.evaluateAll(elements => elements.map(el => (el as HTMLInputElement).value));
-    // const count = await this.productKeys.count();
-    // const values = [];
-    // for (let i = 0; i < count; ++i) {
-    //   values.push(await this.productKeys.nth(i).inputValue());
-    // }
-    // return values;
   }
 
   public async getProductQuantity(productName: string): Promise<string> {

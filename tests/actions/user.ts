@@ -81,12 +81,6 @@ export class UserActions {
     });
   }
 
-  // async addProductToCartApi(product: Product, size: Size = 'Small') {
-  //   await this.productPage.selectProductSizeIfNeeded(size);
-
-  //   await this.setProductProperties(product);
-  // }
-
   async checkOrder(product: Product) {
     await test.step('Переход в корзину и проверка заказа', async () => {
       await this.cartPage.openPage();

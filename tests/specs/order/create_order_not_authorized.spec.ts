@@ -17,7 +17,6 @@ test.describe('Создание заказа не авторизованным �
       let productToOrder = createProduct();
       await userActions.chooseProductByName(product);
       await userActions.addProductToCart(productToOrder);
-      // await userActions.addProductToCartApi(productToOrder);
       await userActions.checkOrder(productToOrder);
     }
 
